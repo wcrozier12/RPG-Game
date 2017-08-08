@@ -1,5 +1,7 @@
 $(document).ready(function(){
 //character objects
+//test
+hi
 var characters = [
 
     obiwan=  {
