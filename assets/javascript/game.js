@@ -1,47 +1,50 @@
 $(document).ready(function(){
 //character objects
 //test
-hi
 var characters = [
 
-    obiwan=  {
-    "name": "Obi-Wan Kenobi",
+    char1=  {
+    "name": "Daenerys Targaryen",
     "hp": 120,
     "ap": 8,
-    'id': 'obiwan',
-    reset: function () { //resets HP and AP on reset button click
+    'id': 'char1',
+    reset: function () { //resets HP, AP, and onclick to each character when game is reset
         this.hp = 120;
         this.ap = 8;
+        $('.char1').click(select0);
     },
 },
-    luke=  {
-    "name": "Luke Skywalker",
+    char2=  {
+    "name": "Cersei Lannister",
     "hp": 100,
     "ap": 5,
-    'id':'luke',
+    'id':'char2',
     reset: function () {
         this.hp = 100;
         this.ap = 5;  
+        $('.char2').click(select1); 
     },
 },
-    vader= {
-    "name": "Darth Vader",
+    char3= {
+    "name": "Jon Snow",
     "hp": 150,
     "ap": 20,
-    'id': 'vader',
+    'id': 'char3',
     reset: function () {
         this.hp = 150;
         this.ap = 20;  
+        $('.char3').click(select2); 
     },
 },
-    maul=  {
-    "name": "Darth Maul",
+    char4=  {
+    "name": "Euron Greyjoy",
     'hp': 180,
     'ap': 25,
-    'id': 'maul',
+    'id': 'char4',
     reset: function () {
         this.hp = 180;
         this.ap = 25; 
+        $('.char4').click(select3);
      }, 
 },
 
@@ -52,16 +55,17 @@ var characters = [
 //creates character buttons on load
 var createChar = function() {
     for (var i = 0; i<characters.length; i++) {
-      charButton = $('<button>');
+      charButton = $('<div>');
       charButton.addClass('char-button characters ' + characters[i].id);
       charButton.attr('hp', characters[i].hp);
       charButton.attr('ap', characters[i].ap);
       charButton.html(characters[i].name + " " + characters[i].hp);
       $('#character-selection').append(charButton);
+      characters[i].reset();
+    
 }
 };
 
-createChar();
 
 //character and defender selection
 var charSelected = false;
@@ -71,79 +75,83 @@ var yourCharAp;
 var defender = "";
 var yourCharHP;
 var defenderHP;
+var reset = false;
 
-$('.obiwan').on('click', function () {
+
+var select0 = function () {
     if (!charSelected){
       $('#enemies-available').append($('.char-button'));
-      $('#your-character').append($('.obiwan'));
-      $('.obiwan').addClass('yourChar');
+      $('#your-character').append($('.char1'));
+      $('.char1').addClass('yourChar');
       yourCharAp = 0;
       yourChar = characters[0];
       charSelected = true;
-      $(".obiwan").off('click');
+      reset = true;
     }
-    else if (charSelected && !defenderSelected){
-      $('#defender').append($('.obiwan'));
-      $('.obiwan').addClass('defender');
+    else if (charSelected && !defenderSelected && yourChar != characters[0]){
+      $('#defender').append($('.char1'));
+      $('.char1').addClass('defender');
       defenderSelected=true;
       defender = characters[0];
     }
-});
+};
 
-$('.luke').on('click', function () {
+var select1 = function () {
     if(!charSelected){
       $('#enemies-available').append($('.char-button'));
-      $('#your-character').append($('.luke'));
-      $('.luke').addClass('yourChar');
+      $('#your-character').append($('.char2'));
+      $('.char2').addClass('yourChar');
       yourCharAp = 0;
       charSelected = true;
       yourChar = characters[1];
-      $(".luke").off('click');
+      reset = true;
     }
-    else if (charSelected && !defenderSelected) {
-      $('#defender').append($('.luke')); 
-      $('.luke').addClass('defender');   
+    else if (charSelected && !defenderSelected && yourChar != characters[1]) {
+      $('#defender').append($('.char2')); 
+      $('.char2').addClass('defender');   
       defenderSelected= true;
       defender = characters[1];
     };
-});
+};
 
-$('.vader').on('click', function () {
+var select2 = function () {
     if(!charSelected){
       $('#enemies-available').append($('.char-button'));
-      $('#your-character').append($('.vader'));
-      $('.vader').addClass('yourChar');
+      $('#your-character').append($('.char3'));
+      $('.char3').addClass('yourChar');
       yourCharAp = 0;
       charSelected = true;
       yourChar = characters[2];
-      $(".vader").off('click');
+      reset = true;
+        
     }
-    else if (charSelected && !defenderSelected) {
-      $('#defender').append($('.vader')); 
-      $('.vader').addClass('defender');
+    else if (charSelected && !defenderSelected && yourChar != characters[2]) {
+      $('#defender').append($('.char3')); 
+      $('.char3').addClass('defender');
       defenderSelected = true;    
       defender = characters[2];    
     }
-});
+};
 
-$('.maul').on('click', function () {
+var select3 = function () {
     if(!charSelected){
       $('#enemies-available').append($('.char-button'));
-      $('#your-character').append($('.maul'));
-      $('.maul').addClass('yourChar');
+      $('#your-character').append($('.char4'));
+      $('.char4').addClass('yourChar');
       yourCharAp = 0;
       charSelected= true;
       yourChar = characters[3];
-      $(".maul").off('click');
+      reset = true;
     }
 
-    else if (charSelected && !defenderSelected) {
-      $('#defender').append($('.maul')); 
-      $('.maul').addClass('defender');
+    else if (charSelected && !defenderSelected && yourChar != characters[3]) {
+      $('#defender').append($('.char4')); 
+      $('.char4').addClass('defender');
       defenderSelected = true; 
       defender = characters[3];        
     }
-});
+};
+
 // on attack function
 $('#attack').on('click', function (){
     if (charSelected && defenderSelected && yourChar.hp > 0) {
@@ -167,8 +175,7 @@ $('#attack').on('click', function (){
     else if (defender.hp <= 0) {
       $('#deadmessage').html(defender.name + " defeated! Choose another enemy to battle.");
       defenderSelected = false;
-      $('#defender').empty();
-      $('#defender').html('Defender: ');
+      $('.defender').hide();
     }
 
     if ($('#enemies-available').is(':empty') && defender.hp <=0) {
@@ -178,19 +185,15 @@ $('#attack').on('click', function (){
 });
 
 
-
-
-
-$('#reset').on('click', function () {
-    obiwan.reset();
-    luke.reset();
-    vader.reset();
-    maul.reset();   
-    createChar();
+createChar();
+$('#reset').on('click', function () { 
+    if(reset === true) {
+    for (var i =0; i < characters.length; i++){
+        characters[i].reset();
+    };
     charSelected = false;
     defenderSelected = false;
     yourChar = "";
-    yourCharAp;
     defender = "";
     $('#defender').empty();
     $('#defender').html('Defender: ');
@@ -200,8 +203,9 @@ $('#reset').on('click', function () {
     $('#attackmessage').empty();
     $('#counterattackmessage').empty();
     $('#deadmessage').empty();
-    console.log(charSelected);
-    console.log(defenderSelected); 
+    createChar();
+    reset = false;
+    }
 });
 
 
