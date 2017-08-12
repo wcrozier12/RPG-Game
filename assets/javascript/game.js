@@ -28,7 +28,7 @@ var characters = [
         this.hp = 120;
         this.ap = 8;
         $('.char1').click(select0);
-        $('.char1').append('<img id="dan" src="/Users/WilliamCrozier/Desktop/ua_bootCamp/Homework/week-4-game/assets/images/dan.jpeg" />');
+        $('.char1').append('<img id="dan" src="assets/images/dan.jpeg" />');
     },
  },
     char2=  {
@@ -41,7 +41,7 @@ var characters = [
         this.hp = 100;
         this.ap = 14;  
         $('.char2').click(select1); 
-        $('.char2').append('<img id="cersei" src="/Users/WilliamCrozier/Desktop/ua_bootCamp/Homework/week-4-game/assets/images/cersei.jpeg" />');
+        $('.char2').append('<img id="cersei" src="assets/images/cersei.jpeg" />');
     },
 },
     char3= {
@@ -54,7 +54,7 @@ var characters = [
         this.hp = 150;
         this.ap = 8;  
         $('.char3').click(select2); 
-        $('.char3').append('<img id="jonsnow" src="/Users/WilliamCrozier/Desktop/ua_bootCamp/Homework/week-4-game/assets/images/jon.jpeg" />');
+        $('.char3').append('<img id="jonsnow" src="assets/images/jon.jpeg" />');
     },
 },
     char4=  {
@@ -67,7 +67,7 @@ var characters = [
         this.hp = 180;
         this.ap = 3; 
         $('.char4').click(select3);
-        $('.char4').append('<img id="euron" src="/Users/WilliamCrozier/Desktop/ua_bootCamp/Homework/week-4-game/assets/images/euron.png" />');
+        $('.char4').append('<img id="euron" src="assets/images/euron.png" />');
      }, 
 },
 
