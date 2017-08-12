@@ -2,41 +2,98 @@
 <html lang=en-us>
 
 <head> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href = "assets/css/reset.css"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/game.js" > </script>
     <link rel="stylesheet" type="text/css" href = "assets/css/style.css">
     <title> RPG Game </title>
 </head>
-
 <body>
-    <h1> Game of Thrones RPG! </h1>
-    <h2> Select your character: </h2>
-    <div id = "character-selection">
+<audio id="themesong">
+    <source src="assets/sound/gotTheme.mp3" type="audio/mpeg">
+</audio>
+    <h1> Game of Thrones RPG </h1>
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <h2 id="select"> Select your character: </h2>
+            <div id = "character-selection">
+            </div>
     </div>
-    <div id="your-character">
-        Your character:
+</row>
+
+<div id="gamePlayContainer">
+<div class="container">
+<div class ="row">
+    <div class="col-md-6">
+
+            <div id = "charactercontainer">
+                <h2>Your character:</h2>
+                <div id="your-character">
+                 </div>
+
     </div>
-    <div id = "enemiescontainer" >
-        Enemies available to attack: 
-        <div id = "enemies-available"></div>
     </div>
+
+    <div class="col-md-6">
+
+                <div id="defendercontainer">
+                 <h2>Defender: </h2>
+                    <div id= "defender">
+                    </div>
+
+        </div>          
+    </div>
+</div>
+
+<div class="container" class="buttons">
+<div class ="row">
+    <div class="col-md-6">
+
     <div id="attack">
         <button type="button">Attack</button>
     </div>
-    <div id= "defender">
-        Defender:
     </div>
-    <br>
+    <div class="col-md-6">
+    <div id ="reset">
+        <button type="button">Reset</button> 
+    </div>  
+    </div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <div id = "attackmessage">
+    </div>
+    <div id = "counterattackmessage">
+    </div>
+    <div id= "deadmessage">
+    </div> 
     <div id = "attackmessage">
     </div>
     <div id = "counterattackmessage">
     </div>
     <div id= "deadmessage">
+    </div>   
+    </div> 
+</div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id = "enemiescontainer" >
+            <h2> Enemies available to attack: </h2>
+            <div id = "enemies-available"></div>
+        </div>
     </div>
-    <div id ="reset">
-        <button type="button">Reset</button>
-    </div>
+</div>
+</div>
+</div>
+<div id ="mute">
+        <span class="glyphicon glyphicon-volume-up"></span>
+ </div>  
 </body>
 
 </html>
